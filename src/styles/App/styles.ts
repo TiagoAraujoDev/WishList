@@ -1,5 +1,10 @@
 import styled from "styled-components";
 
+export const AppContainer = styled.div`
+  width: 100vw;
+  height: 100vh;
+`;
+
 export const Wrapper = styled.main`
   max-width: 70%;
   height: calc(100vh - 10rem);
@@ -19,7 +24,7 @@ export const ListContainer = styled.ul`
   padding-right: 1rem;
 
   &::-webkit-scrollbar {
-    width: .8rem;
+    width: 0.8rem;
   }
   &::-webkit-scrollbar-track {
     background: ${(props) => props.theme["gray-300"]};

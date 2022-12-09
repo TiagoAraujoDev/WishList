@@ -5,7 +5,7 @@ import { Header } from "./components/Header";
 import { Input } from "./components/Input";
 import { ListItem } from "./components/ListItem";
 
-import { ListContainer, Wrapper } from "./styles/App/styles";
+import { AppContainer, ListContainer, Wrapper } from "./styles/App/styles";
 
 export interface Item {
   id: string;
@@ -35,7 +35,7 @@ export const App = () => {
   }
 
   return (
-    <>
+    <AppContainer>
       <Header />
       <Wrapper>
         <Input addItem={addItem} />
@@ -46,6 +46,6 @@ export const App = () => {
         </ListContainer>
       </Wrapper>
       <Footer itemsNumber={itemsNumber} />
-    </>
+    </AppContainer>
   );
 };

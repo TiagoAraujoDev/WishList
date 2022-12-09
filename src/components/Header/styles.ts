@@ -10,7 +10,8 @@ export const HeaderContainer = styled.header`
   align-items: center;
 
   span {
-    font-size: 2.4rem;
+    font-size: 2.6rem;
+    font-weight: bold;
     color: ${(props) => props.theme["blue-700"]};
   }
-`
+`;

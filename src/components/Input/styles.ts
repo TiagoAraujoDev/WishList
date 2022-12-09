@@ -38,6 +38,9 @@ export const InputContainer = styled.div`
     border: none;
     box-shadow: none;
     cursor: pointer;
+    @media (max-width: 485px) {
+      display: none;
+    }
 
     svg {
       width: 2.4rem;
