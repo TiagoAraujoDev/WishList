@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
@@ -15,8 +15,19 @@ export interface Item {
 }
 
 export const App = () => {
-  const [items, setItems] = useState<Item[]>([]);
+  const [items, setItems] = useState<Item[]>(() => {
+    const storageItems = localStorage.getItem("@wish-list:List");
+    if (storageItems) {
+      const storageItemsParsed = JSON.parse(storageItems);
+      return storageItemsParsed;
+    }
+    return [];
+  });
   const [search, setSearch] = useState<string>("");
+
+  useEffect(() => {
+    saveInLocalStorage();
+  }, [items])
 
   const itemsNumber = items.length;
 
@@ -24,6 +35,11 @@ export const App = () => {
     const itemLowerCase = item.content.toLowerCase();
     return itemLowerCase.includes(search.toLowerCase());
   });
+
+  const saveInLocalStorage = () => {
+    const itemsToString = JSON.stringify(items);
+    localStorage.setItem("@wish-list:List", itemsToString);
+  };
 
   const addItem = (data: Item) => {
     setItems((state) => {
