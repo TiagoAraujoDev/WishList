@@ -10,13 +10,13 @@ export const Wrapper = styled.main`
   height: calc(100vh - 10rem);
 
   margin: 0 auto;
-  padding: 1.5rem;
+  padding: 1.5rem 1.5rem 0;
 `;
 
 export const ListContainer = styled.ul`
   display: block;
   height: calc(
-    100vh - 19rem
+    100vh - 22.5rem
   ); /* Removing the header, footer, input, margin and padding*/
   list-style: none;
   margin-top: 2rem;

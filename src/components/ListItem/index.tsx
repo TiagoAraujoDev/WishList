@@ -1,4 +1,5 @@
 import { FaTrashAlt } from "react-icons/fa";
+
 import { Item } from "../../App";
 
 import { ListItemContainer } from "./styles";

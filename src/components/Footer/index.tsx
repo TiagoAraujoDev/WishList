@@ -3,6 +3,7 @@ import { FooterContainer } from "./styles";
 interface FooterProps {
   itemsNumber: number;
 }
+
 export const Footer = ({ itemsNumber }: FooterProps) => {
   return (
     <FooterContainer>
