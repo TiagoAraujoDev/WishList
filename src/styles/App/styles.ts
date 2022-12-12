@@ -39,3 +39,15 @@ export const ListContainer = styled.ul`
     border-radius: 10px;
   }
 `;
+
+export const Loading = styled.span`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 4rem;
+  font-weight: bold;
+  color: ${(props) => props.theme["blue-500"]};
+  height: calc(
+    100vh - 22.5rem
+  ); /* Removing the header, footer, input, margin and padding*/
+`;
