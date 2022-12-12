@@ -1,3 +1,19 @@
 {
-  "items": []
+  "items": [
+    {
+      "id": "92419e1f-749f-4040-acb5-162a04762afb",
+      "content": "pao",
+      "done": false
+    },
+    {
+      "id": "4dcd5d1d-f526-45da-8304-b4dfd05df40f",
+      "content": "leite",
+      "done": false
+    },
+    {
+      "id": "01df5352-276e-4c35-b96e-0c87a33803fc",
+      "content": "coco",
+      "done": false
+    }
+  ]
 }
