@@ -31,13 +31,12 @@ export const App = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await apiFetch(`${API_URL}/tems`);
-        if (!response) {
+        const response = await fetch(`${API_URL}/items`);
+        if (!response.ok) {
           throw Error("Please, reload the application!");
-        } else {
-          const data = await response.json();
-          setItems(data);
         }
+        const data = await response.json();
+        setItems(data);
       } catch (err: any) {
         setFetchError(err.message);
       } finally {
@@ -56,22 +55,62 @@ export const App = () => {
     return itemLowerCase.includes(search.toLowerCase());
   });
 
-  const addItem = (data: Item) => {
+  const addItem = async (data: Item) => {
     setItems((state) => {
       return [...state, data];
     });
+
+    const postOptions = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    };
+
+    const result = await apiFetch(`${API_URL}/item`, postOptions);
+    if (result) {
+      setFetchError(result);
+    }
   };
 
-  const checkItem = (id: string) => {
+  const checkItem = async (id: string) => {
     const newItems = items.map((item) =>
       item.id === id ? { ...item, done: !item.done } : item
     );
     setItems(newItems);
+
+    const checkedItem = newItems.find((item) => item.id === id);
+
+    const patchOptions = {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ done: checkedItem?.done }),
+    };
+
+    const result = await apiFetch(`${API_URL}/items/${id}`, patchOptions);
+    if (result) {
+      setFetchError(result);
+    }
   };
 
-  const deleteItem = (id: string) => {
+  const deleteItem = async (id: string) => {
     const newItems = items.filter((item) => item.id !== id);
     setItems(newItems);
+
+    const deleteOptions = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const result = await apiFetch(`${API_URL}/tems/${id}`, deleteOptions);
+    if (result) {
+      setFetchError(result);
+    }
   };
 
   const filterList = (data: string) => {
@@ -84,9 +123,7 @@ export const App = () => {
       <Wrapper>
         <Input addItem={addItem} />
         <SearchInput filterList={filterList} />
-        {fetchError && (
-          <span>{fetchError}</span>
-        )}
+        {fetchError && <span>{fetchError}</span>}
         {!fetchError && isLoading ? (
           <Loading>
             <span>Loading...</span>

@@ -9,11 +9,9 @@ export const apiFetch = async (
     if (!response.ok) {
       throw Error("Reload the application!");
     }
-
-    return response;
   } catch (err: any) {
     errorMsg = err.message;
   } finally {
-    console.log(errorMsg);
+     return errorMsg;
   }
 };
